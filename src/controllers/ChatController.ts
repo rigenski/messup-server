@@ -21,20 +21,20 @@ class ChatController {
   };
 
   show = async (req: Request, res: Response) => {
-    try {
-      const { room_id } = req.params;
+    const { room_id } = req.params;
 
-      const chats = await Chat.find({ room_id: room_id });
+    const chats = await Chat.find({ room_id: room_id }).populate('user_id');
 
+    if (chats) {
       return res.status(200).json({
         status: 'success',
-        message: 'chats has been successfully showed',
+        message: 'chat has been successfully showed',
         result: chats,
       });
-    } catch (e) {
+    } else {
       return res.status(404).json({
         status: 'failed',
-        message: 'chats has been not found',
+        message: 'chat has been not found',
       });
     }
   };
