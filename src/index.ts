@@ -63,8 +63,6 @@ io.on('connection', (socket: any) => {
 
     if (error) {
       console.log('join socket failed');
-    } else {
-      console.log('join socket sucessfully');
     }
   });
 
@@ -124,7 +122,6 @@ io.on('connection', (socket: any) => {
           Chat.findOne({ _id: result._id })
             .populate('user_id')
             .then((result: any) => {
-              console.log(result);
               io.to(room_id).emit('chat', result);
               callback();
             })
@@ -149,3 +146,12 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  const path = require('path');
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}

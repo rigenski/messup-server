@@ -1,11 +1,10 @@
 {
-  "name": "chatify",
+  "name": "messup-server",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "tsc": "rimraf build/ && tsc",
-    "ts": "rimraf build/ && tsc -w",
+    "ts": "tsc -w",
     "dev": "nodemon ./build/index.js"
   },
   "devDependencies": {
