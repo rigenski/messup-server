@@ -137,7 +137,7 @@ io.on('connection', (socket: any) => {
 });
 
 mongoose
-  .connect(`${process.env.DATABASE}`)
+  .connect(`${process.env.DB}`)
   .then(() => {
     http.listen(process.env.PORT || 8000, () => {
       console.log(`running with server ${process.env.PORT}`);
