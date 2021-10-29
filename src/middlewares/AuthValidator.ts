@@ -2,9 +2,9 @@ import { NextFunction, Request, Response } from 'express';
 import { check, validationResult } from 'express-validator';
 
 const register = [
-  check('name').isString(),
-  check('username').isString(),
-  check('password').isLength({ min: 6 }),
+  check('name').isString().isLength({ max: 16 }),
+  check('username').isString().isLength({ max: 16 }),
+  check('password').isLength({ min: 4 }),
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
 
@@ -20,7 +20,7 @@ const register = [
 
 const login = [
   check('username').isString(),
-  check('password').isLength({ min: 6 }),
+  check('password'),
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
 
