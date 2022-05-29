@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { check, validationResult } from 'express-validator';
 
 const create = [
-  check('name').isString().isLength({ max: 16 }),
+  check('name').isString().isLength({ max: 12 }),
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
 
